@@ -1,0 +1,4 @@
+
+export RBENV_ROOT=<%= @rbenv_root %>
+export PATH=<%= @ruby_build_bin_path %>:$PATH
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
