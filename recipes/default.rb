@@ -21,7 +21,7 @@ create_group = group node[:rbenv][:group] do
   action :nothing
 end
 
-# creaate user
+# create user
 create_user = user node[:rbenv][:user] do
   shell "/bin/bash"
   group node[:rbenv][:group]
