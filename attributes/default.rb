@@ -1,6 +1,7 @@
 
 # cent-os install package
 default[:rbenv][:cent_os][:package] = ["openssl-devel", "gcc"]
+default[:rbenv][:ubuntu][:package] = ["libssl", "libssl-dev", "gcc"]
 
 # rbenv設定
 default[:rbenv][:user]           = "rbenv"
