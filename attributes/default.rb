@@ -1,7 +1,7 @@
 
 # cent-os install package
-default[:rbenv][:cent_os][:package] = ["openssl-devel", "gcc"]
-default[:rbenv][:ubuntu][:package] = ["libssl", "libssl-dev", "gcc"]
+default[:rbenv][:centos][:package] = ["make", "openssl-devel", "gcc"]
+default[:rbenv][:ubuntu][:package] = ["make", "libssl-dev", "gcc"]
 
 # rbenv設定
 default[:rbenv][:user]           = "rbenv"
@@ -28,9 +28,10 @@ default[:ruby_build][:bin_path]       = "#{default[:rbenv][:root]}/bin"
 default[:ruby_build][:mode]           = "2775"
 
 # ruby設定
-default[:ruby][:version]   = "2.1.3"
+default[:ruby][:version]   = "2.1.4"
 default[:ruby][:install]   = "rbenv install #{default[:ruby][:version]}"
 default[:ruby][:global]    = "rbenv global #{default[:ruby][:version]}"
+default[:ruby][:whether_exist_version] = "/usr/local/rbenv/versions/#{default[:ruby][:version]}"
 
 # bash設定
 default[:rbenv_sh][:filename]       = "rbenv.sh.erb"

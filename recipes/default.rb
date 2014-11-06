@@ -10,19 +10,19 @@
 
 # install packages
 case node[:platform]
-  when 'ubuntu'
-  node[:rbenv][:cent_os][:package].each do |pack|
+
+when "ubuntu"
+  node[:rbenv][:ubuntu][:package].each do |pack|
     package pack do
       action :install
     end
   end
-  
-  when 'redhat', 'centos'
-    node[:rbenv][:ubuntu][:package].each do |pack|
-      package pack do
-        action :install
-      end
+when "redhat", "centos"
+  node[:rbenv][:centos][:package].each do |pack|
+    package pack do
+      action :install
     end
+  end
 end
 
 
@@ -124,9 +124,6 @@ initialize_rbenv = ruby_block "initialize_rbenv" do
 end
 
 
-
-
-
 # install.sh 
 install_sh = bash "install.sh" do
   code "#{node[:ruby_build][:path]}/install.sh"
@@ -135,8 +132,9 @@ end
  
 # ruby install
 ruby_install = bash "ruby install" do
-    code node[:ruby][:install]
-    action :nothing
+  code node[:ruby][:install]
+  creates node[:ruby][:whether_exist_version]
+  action :nothing
 end
 
 # ruby global 
@@ -177,7 +175,8 @@ ruby_block "execute_chef" do
     ruby_install.run_action(:run)
     ruby_global.run_action(:run)
     rbenv_rehash.run_action(:run)
-    gem_install_rehash.run_action(:install)
+    restart_shell.run_action(:run)
+#    gem_install_rehash.run_action(:install)
   end
   action :run
 end
