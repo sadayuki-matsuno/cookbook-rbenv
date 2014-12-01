@@ -9,8 +9,13 @@
 
 
 # install packages
-case node[:platform]
+node[:rbenv][:common][:package].each do |pack|
+  package pack do
+   action :install
+  end
+end
 
+case node[:platform]
 when "ubuntu"
   node[:rbenv][:ubuntu][:package].each do |pack|
     package pack do
@@ -24,7 +29,6 @@ when "redhat", "centos"
     end
   end
 end
-
 
 # create group
 create_group = group node[:rbenv][:group] do

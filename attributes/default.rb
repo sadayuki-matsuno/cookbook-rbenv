@@ -1,7 +1,8 @@
 
 # cent-os install package
-default[:rbenv][:centos][:package] = ["make", "openssl-devel", "gcc"]
-default[:rbenv][:ubuntu][:package] = ["make", "libssl-dev", "gcc"]
+default[:rbenv][:common][:package] = ["make", "gcc", "readline-devel"]
+default[:rbenv][:centos][:package] = ["openssl-devel"]
+default[:rbenv][:ubuntu][:package] = ["libssl-dev"]
 
 # rbenv設定
 default[:rbenv][:user]           = "rbenv"
